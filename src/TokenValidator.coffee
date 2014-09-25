@@ -207,7 +207,7 @@ class TokenValidator
           response.on 'data', (chunk) =>
             switch response.statusCode
               when 200 then onValidToken(response) if onValidToken?
-              when 200 then onInvalidToken(response) if onInvalidToken?
+              when 498 then onInvalidToken(response) if onInvalidToken?
               else onError(new Error("Unexpected response staus code " + response.statusCode)) if onError?
     ).on('error', (e) ->
       onError(e) if onError?

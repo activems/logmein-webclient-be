@@ -1,14 +1,14 @@
 {
-  "name": "logmein-client-verify",
-  "version": "0.1.0",
-  "description": "LogmeIn OAuth2.0 access token verification library",
-  "main": "LogmeInClientVerify.coffee",
+  "name": "logmein-client-validation",
+  "version": "0.1.2",
+  "description": "LogmeIn OAuth2.0 access token validation library",
+  "main": "lib/TokenValidator.js",
   "scripts": {
     "test": "make test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/activems/logmein-client-verify.git"
+    "url": "https://github.com/activems/logmein-client-validation.git"
   },
   "keywords": [
     "OAuth",
@@ -18,7 +18,15 @@
   "author": "activems",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/activems/logmein-client-verify/issues"
+    "url": "https://github.com/activems/logmein-client-validation/issues"
   },
-  "homepage": "https://github.com/activems/logmein-client-verify"
+  "homepage": "https://github.com/activems/logmein-client-validation",
+  "devDependencies": {
+    "mocha": "~1.21.4",
+    "grunt-mocha-test": "~0.12.0",
+    "chai": "~1.9.1"
+  },
+  "dependencies": {
+    "nock": "~0.48.0"
+  }
 }
