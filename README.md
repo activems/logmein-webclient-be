@@ -12,7 +12,7 @@ $ npm install logmein-client-validation --save
 Inside your application code, import the token validator from the module:
 
 ```javascript
-var validator = require('logmein-client-validation').TokenValidator();
+var validator = require('logmein-client-validation');
 ```
 
 >If your client is using its own infrastructure, `host`, `port` and `apiVersion` can be passed to the validator as a configuration object.

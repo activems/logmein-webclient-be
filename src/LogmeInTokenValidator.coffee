@@ -67,95 +67,95 @@ http = require('http')
 # the authentication, token validation and access to the resource
 # owner's data.
 #
-class TokenValidator
+class LogmeInTokenValidator
  
-  # Client settings  
-  # ----------------
+      # `DEFAULT_HOST` specifies the default host used by the 
+    # client as authentication server if no `host` configuration
+    # is specified during the library initialization. By default,
+    # the host points to the Gipsy-Danger API web server.
+    #
+    DEFAULT_HOST : 'api.actisec.com'
 
-  # `DEFAULT_HOST` specifies the default host used by the 
-  # client as authentication server if no `host` configuration
-  # is specified during the library initialization. By default,
-  # the host points to the Gipsy-Danger API web server.
-  #
-  @DEFAULT_HOST : 'https://api.actisec.com'
+    # `DEFAULT_PORT` specifies the default TCP port in the 
+    # authentication server used by the client if no `port` configuration
+    # is specified during the library initialization.
+    #
+    DEFAULT_PORT : 443
 
-  # `DEFAULT_PORT` specifies the default TCP port in the 
-  # authentication server used by the client if no `port` configuration
-  # is specified during the library initialization.
-  #
-  @DEFAULT_PORT : 80
+    # `DEFAULT_API` specifies the default API version used 
+    # to interface with the server if no `apiVersion` configuration
+    # is specified during the library initialization.
+    #
+    DEFAULT_API  : "v1"
 
-  # `DEFAULT_API` specifies the default API version used 
-  # to interface with the server if no `apiVersion` configuration
-  # is specified during the library initialization.
-  #
-  @DEFAULT_API  : "v1"
-
-  # Initializing the client library
-  # ----------------------------------------------------
-  # 
-  # To initialize the library you need to call the constructor,
-  # method, which takes as input a configuration object that
-  # can contain zero or more of the following fields:
-  #
-  # |Name|Value|Description|
-  # |----|-----|-----------|
-  # |`host`|`String`|Authentication server to which the client will connect. Should not include the URL schema. Defaults to `DEFAULT_HOST`.|
-  # |`port`|TCP port number|TCP port from the host to which the client will connect. Defaults to `DEFAULT_PORT`|
-  # |`apiVersion`|`String`|Identifies the version of the API used. Defaults to `DEFAULT_API`|
-  # 
-  # Example of initialization from a JavaScript client:
-  #
-  # ```javascript
-  # var client = Client();
-  # ```
-  #
-  # For clients with nosting their own authorization infrastructure, a custom
-  # settings may be also provided:
-  #
-  # ```javascript
-  # var client = Client({ host: "example.com", port: 8000});
-  # ```
-  #
-  # A new client instance is returned that can be used to
-  # perform the authentication and acess protected resources.
-  #
-  constructor: (@config) ->
+    # Initializing the client library
+    # ----------------------------------------------------
+    # 
+    # To initialize the library you need to call the constructor,
+    # method, which takes as input a configuration object that
+    # can contain zero or more of the following fields:
+    #
+    # |Name|Value|Description|
+    # |----|-----|-----------|
+    # |`host`|`String`|Authentication server to which the client will connect. Should *NOT* include the URL schema as it should always be `https`. Defaults to `DEFAULT_HOST`.|
+    # |`port`|TCP port number|TCP port from the host to which the client will connect. Defaults to `DEFAULT_PORT`|
+    # |`apiVersion`|`String`|Identifies the version of the API used. Defaults to `DEFAULT_API`|
+    # 
+    # Example of initialization from a JavaScript client:
+    #
+    # ```javascript
+    # var client = LogmeInClientAuth();
+    # ```
+    #
+    # For clients with nosting their own authorization infrastructure, a custom
+    # settings may be also provided:
+    #
+    # ```javascript
+    # var client = LogmeInClientAuth({ host: "example.com", port: 8000});
+    # ```
+    #
+    # A new client instance is returned that can be used to
+    # perform the authentication and acess protected resources.
+    #
+    constructor: (config) ->
+        { @host, @port, @apiVersion } = config if config?
+        @host       ?= @DEFAULT_HOST
+        @port       ?= @DEFAULT_PORT
+        @apiVersion ?= @DEFAULT_API
       
 
   # Accessing the settings
-  # ----------------------------------------------------
+    # ----------------------------------------------------
 
-  # By calling `getHost()` the caller can retrieve the 
-  # configured `host` used by the library
-  #
-  # ```javascript
-  # var host = client.getHost();
-  # ```
-  #
-  getHost: () ->
-    return if @config? and @config.host? then @config.host else @DEFAULT_HOST
+    # By calling `getHost()` the caller can retrieve the 
+    # configured `host` used by the library
+    #
+    # ```javascript
+    # var host = client.getHost();
+    # ```
+    #
+    getHost: () ->
+      return @host
 
-  # By calling `getPort()` the caller can retrieve the 
-  # configured `host` used by the library
-  #
-  # ```javascript
-  # var port = client.getPort();
-  # ```
-  #
-  getPort: () ->
-    return if @config? and @config.port? then @config.port else @DEFAULT_PORT
-  
-  
-  # By calling `getApiVersion()` the caller can retrieve the 
-  # configured `apiVersion` used by the library
-  #
-  # ```javascript
-  # var api = client.getApiVersion();
-  # ```
-  #
-  getApiVersion: () ->
-    return if @config? and @config.apiVersion? then @config.apiVersion else @DEFAULT_API
+    # By calling `getPort()` the caller can retrieve the 
+    # configured `host` used by the library
+    #
+    # ```javascript
+    # var port = client.getPort();
+    # ```
+    #
+    getPort: () ->
+      return @port
+
+    # By calling `getApiVersion()` the caller can retrieve the 
+    # configured `apiVersion` used by the library
+    #
+    # ```javascript
+    # var api = client.getApiVersion();
+    # ```
+    #
+    getApiVersion: () ->
+      return @apiVersion
 
   _getResourcePath: (resource) ->
     return '/' + @getApiVersion() + '/oauth2/' + resource 
@@ -213,7 +213,7 @@ class TokenValidator
       onError(e) if onError?
     ).end()
       
-exports.TokenValidator = TokenValidator
+exports.LogmeInTokenValidator = LogmeInTokenValidator
 
 module.exports = (config) -> 
-     return new TokenValidator(config)
+     return new LogmeInTokenValidator(config)
