@@ -1,0 +1,24 @@
+{
+  "name": "logmein-client-verify",
+  "version": "0.1.0",
+  "description": "LogmeIn OAuth2.0 access token verification library",
+  "main": "LogmeInClientVerify.coffee",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/activems/logmein-client-verify.git"
+  },
+  "keywords": [
+    "OAuth",
+    "OAuth2.0",
+    "authentication"
+  ],
+  "author": "activems",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/activems/logmein-client-verify/issues"
+  },
+  "homepage": "https://github.com/activems/logmein-client-verify"
+}
