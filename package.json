@@ -1,6 +1,6 @@
 {
   "name": "logmein-client-validation",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "LogmeIn OAuth2.0 access token validation library",
   "main": "lib/token_validator.js",
   "scripts": {
