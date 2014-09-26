@@ -3,14 +3,11 @@ module.exports = (grunt) ->
     coffee:
       compile:
         files:
-          'lib/token_validator.js': ['src/*.coffee']
+          'lib/main.js': ['src/*.coffee']
     mochaTest:
       options:
         reporter: 'list'
       src: ['test/*.coffee']
-
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.registerTask 'default', ['coffee']
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-mocha-test'

@@ -56,7 +56,7 @@
 # +---------+
 # ```
 #
-http = require('http')
+https = require('https')
 
 # The Client class  
 # ----------------
@@ -200,10 +200,8 @@ class LogmeInTokenValidator
         access_token: accessToken
     }
 
-    http.request(
-      options, 
+    https.get(options,
       (response) =>
-        if onSuccess?
           response.on 'data', (chunk) =>
             switch response.statusCode
               when 200 then onValidToken(response) if onValidToken?
