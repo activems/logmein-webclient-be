@@ -255,15 +255,10 @@ class LogmeInTokenValidator
 
     _.extend(options, { header: params } ) unless params?
 
-    console.log(options)
-
     https.request(
         options, 
         (response) =>
-          if onSuccess?
-            response.on 'data', (chunk) =>
-              onSuccess(chunk) if onSuccess?
-
+          onSuccess(response) if onSuccess?
     ).on('error', (e) ->
         onError(e) if onError?
     ).end()
