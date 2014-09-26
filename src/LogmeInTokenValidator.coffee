@@ -249,11 +249,10 @@ class LogmeInTokenValidator
     options = { 
           host: @getHost(),
           port: @getPort() 
-          path: "/" + @getApiVersion() + "/res" + resourcePath,
-          access_token: accessToken
+          path: "/" + @getApiVersion() + "/res" + resourcePath + "?access_token=" + accessToken,
     }
 
-    _.extend(options, { header: params } ) unless params?
+   # _.extend(options, { header: params } ) unless params?
 
     https.request(
         options, 
