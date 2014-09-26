@@ -250,7 +250,7 @@ class LogmeInTokenValidator
           host: @getHost(),
           port: @getPort() 
           path: "/" + @getApiVersion() + "/res" + resourcePath,
-          acess_token: accessToken
+          access_token: accessToken
     }
 
     _.extend(options, { header: params } ) unless params?
