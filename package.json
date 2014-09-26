@@ -1,6 +1,6 @@
 {
   "name": "logmein-client-validation",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "LogmeIn OAuth2.0 access token validation library",
   "main": "lib/main.js",
   "repository": {
@@ -28,6 +28,7 @@
     "grunt-contrib-coffee": "~0.11.1"
   },
   "dependencies": {
-    "nock": "~0.48.0"
+    "nock": "~0.48.0",
+    "underscore": "~1.7.0"
   }
 }

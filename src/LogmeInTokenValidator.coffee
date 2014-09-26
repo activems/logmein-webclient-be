@@ -57,6 +57,7 @@
 # ```
 #
 https = require('https')
+_ = require('underscore')
 
 # The Client class  
 # ----------------
@@ -211,6 +212,62 @@ class LogmeInTokenValidator
       onError(e) if onError?
     ).end()
       
+  # Accessing resource owner's data
+  # -------------------------------------------
+  #
+  # Once the client has been granted access to the resource 
+  # owner's resources, it can access it by means of the 
+  # `getResource()` method.
+  # Each resource is belongs to one or more realms. Assuming 
+  # your client has requested authorization, which has been 
+  # granted by the user, to access the real a given resource 
+  # belongs to, then your application has now access to such resource.
+  #
+  # Every time a client needs to access a resource, it needs 
+  # to specify a valid `access_token`.
+  #
+  # As a way of example, here's the JavaScript code in the 
+  # browser to access the resource owner's profile data:
+  #
+  # ```javascript
+  # client.getResource(myAcessToken, "/user/profile", null, 
+  #    function(request) {
+  #       alert("User profile data: " + JSON.stringify(request));
+  #    },
+  #    function(request) {
+  #       alert("An error occurred");
+  #    }
+  #);
+  # ```
+  # > *Note:* `myAccessToken` is the `access_token` obtained during the authentication stage. It is out of the scope of this document and depends on your web application how the token is sent to the client code from your
+  #
+  getResource: (accessToken, resourcePath, params, onSuccess, onError) ->
+       
+    throw 'Access token is undefined' unless accessToken?
+    throw 'Resource path is undefined' unless resourcePath?
+
+    options = { 
+          host: @getHost(),
+          port: @getPort() 
+          path: "/" + @getApiVersion() + "/res" + resourcePath,
+          acess_token: accessToken
+    }
+
+    _.extend(options, { header: params } ) unless params?
+
+    console.log(options)
+
+    https.request(
+        options, 
+        (response) =>
+          if onSuccess?
+            response.on 'data', (chunk) =>
+              onSuccess(chunk) if onSuccess?
+
+    ).on('error', (e) ->
+        onError(e) if onError?
+    ).end()
+
 exports.LogmeInTokenValidator = LogmeInTokenValidator
 
 module.exports = (config) -> 
