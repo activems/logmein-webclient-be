@@ -1,11 +1,11 @@
 {
-  "name": "logmein-client-validation",
+  "name": "logmein-webclient-be",
   "version": "0.1.12",
-  "description": "LogmeIn OAuth2.0 access token validation library",
+  "description": "LogmeIn web client backend module",
   "main": "lib/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/activems/logmein-client-validation.git"
+    "url": "https://github.com/activems/logmein-webclient-be.git"
   },
   "keywords": [
     "OAuth",
@@ -15,9 +15,9 @@
   "author": "activems",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/activems/logmein-client-validation/issues"
+    "url": "https://github.com/activems/logmein-webclient-be/issues"
   },
-  "homepage": "https://github.com/activems/logmein-client-validation",
+  "homepage": "https://github.com/activems/logmein-webclient-be",
   "devDependencies": {
     "mocha": "~1.21.4",
     "grunt-mocha-test": "~0.12.0",
