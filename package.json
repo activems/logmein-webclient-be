@@ -1,6 +1,6 @@
 {
   "name": "logmein-webclient-be",
-  "version": "0.1.13",
+  "version": "0.1.15",
   "description": "LogmeIn web client backend Node.js module",
   "main": "lib/main.js",
   "repository": {

@@ -5,7 +5,7 @@ chai = require 'chai'
 assert = chai.assert
 expect = chai.expect
 
-LogmeInClient = require('../lib/main.js')
+LogmeinWebClientBe = require('../lib/main.js')
 
 
 MOCK_SERVER = 'http://api.mock.com'
@@ -13,22 +13,22 @@ MOCK_SERVER = 'http://api.mock.com'
 validator = undefined
 mockServer = undefined
 
-describe 'LogmeInClient', ->
+describe 'LogmeinWebClientBe', ->
     
     it 'has defaults for default constructor', ->
-        validator = LogmeInClient() 
+        validator = LogmeinWebClientBe() 
         expect(validator.getHost()).to.be.equal(validator.DEFAULT_HOST)
         expect(validator.getPort()).to.be.equal(validator.DEFAULT_PORT)
         expect(validator.getApiVersion()).to.be.equal(validator.DEFAULT_API)
 
     it 'has defaults for undefined fields', ->
-        validator = LogmeInClient({ host: "test.com", apiVersion: "v2"}) 
+        validator = LogmeinWebClientBe({ host: "test.com", apiVersion: "v2"}) 
         expect(validator.getHost()).to.be.equal("test.com")
         expect(validator.getPort()).to.be.equal(validator.DEFAULT_PORT)
         expect(validator.getApiVersion()).to.be.equal("v2")
 
     it 'validates token agains server', (done) ->
-        validator = LogmeInClient()
+        validator = LogmeinWebClientBe()
         validator.validateToken("Jg5UFfwqvNNsMr4DwB5KyvS5JIEq1A",
             (request)->
                 console.log("TOKEN is valid")
@@ -44,7 +44,7 @@ describe 'LogmeInClient', ->
                 )
 
     it 'obtains resources from the server', (done) ->
-        validator = LogmeInClient()
+        validator = LogmeinWebClientBe()
         validator.getResource("Jg5UFfwqvNNsMr4DwB5KyvS5JIEq1A", "/profile", undefined
             (response)->
                 response.on 'data', (data) =>

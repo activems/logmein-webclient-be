@@ -68,7 +68,7 @@ _ = require('underscore')
 # the authentication, token validation and access to the resource
 # owner's data.
 #
-class LogmeInTokenValidator
+class LogmeinWebClientBe
  
   # `DEFAULT_HOST` specifies the default host used by the 
   # client as authentication server if no `host` configuration
@@ -262,7 +262,7 @@ class LogmeInTokenValidator
         onError(e) if onError?
     ).end()
 
-exports.LogmeInTokenValidator = LogmeInTokenValidator
+exports.LogmeinWebClientBe = LogmeinWebClientBe
 
 module.exports = (config) -> 
-     return new LogmeInTokenValidator(config)
+     return new LogmeinWebClientBe(config)
